@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
       // home: SplashScreen(),
-      home: const Home(),
+      home: Home(),
     );
   }
 }

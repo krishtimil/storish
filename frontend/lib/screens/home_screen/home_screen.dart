@@ -3,12 +3,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:storish/ds/transaction.dart';
+import 'package:storish/screens/home_screen/rec.dart';
 import 'package:storish/utils/constant.dart';
 
 List<Transaction> transactions = [];
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  Home({super.key});
   static String routeName = "/home";
 
   Future<void> getData() async {
@@ -20,7 +21,6 @@ class Home extends StatelessWidget {
     transactions =
         parsed.map<Transaction>((json) => Transaction.fromJson(json)).toList();
   }
-
   void onPressed() async {
     Transaction task = Transaction(
       user: 1,
@@ -28,13 +28,13 @@ class Home extends StatelessWidget {
       price: 0,
       category: "none",
       quantity: 0,
-      timestamp: DateTime.parse("2023-01-28T13:22:14Z"),
+      timestamp: DateTime.now(),
       basic: true,
     );
     final response = await http.post(
       Uri.parse("http://10.0.2.2:8000/api/"),
       headers: {"Content-Type": "application/json"},
-      body: json.encode(task),
+      body: task.toJson(),
     );
     print(jsonEncode(task));
     if (response.statusCode == 201) {
@@ -185,16 +185,9 @@ class Home extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               const PastTransactions(),
-              const Text(
-                'We Recommend You',
-                style: TextStyle(
-                    color: kPrimaryColor,
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold),
+              Rec(
+                product: 'yogurt',
               ),
-              const Text('apple'),
-              const Text('sweets'),
-              const Text('wine'),
             ],
           ),
         ),

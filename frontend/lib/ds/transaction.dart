@@ -27,7 +27,7 @@ class Transaction {
       quantity: json['quantity'],
       product: json['product'],
       category: json['category'],
-      timestamp: DateTime.parse(json['timestamp']),
+      timestamp: DateTime.fromMillisecondsSinceEpoch(json['timestamp']),
       basic: json['basic'],
     );
   }
