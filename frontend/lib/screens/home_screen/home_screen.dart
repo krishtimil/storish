@@ -145,69 +145,7 @@ class Home extends StatelessWidget {
                 'Past Transactions',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              Table(
-                border: TableBorder.all(color: Colors.black, width: 2.5),
-                children: const [
-                  TableRow(children: [
-                    Text(
-                      "purchased",
-                      style: TextStyle(fontSize: 15.0),
-                    ),
-                    Text(
-                      "price(Rs)",
-                      style: TextStyle(fontSize: 15.0),
-                    ),
-                    Text(
-                      "Category",
-                      style: TextStyle(fontSize: 15.0),
-                    ),
-                  ]),
-                  TableRow(children: [
-                    Text(
-                      "Chocolate",
-                      style: TextStyle(fontSize: 15.0),
-                    ),
-                    Text(
-                      "Rs.80",
-                      style: TextStyle(fontSize: 15.0),
-                    ),
-                    Text(
-                      "Luxury",
-                      style: TextStyle(fontSize: 15.0),
-                    ),
-                  ]),
-                  TableRow(children: [
-                    Text(
-                      "Tea",
-                      style: TextStyle(fontSize: 15.0),
-                    ),
-                    Text(
-                      "Rs.180",
-                      style: TextStyle(fontSize: 15.0),
-                    ),
-                    Text(
-                      "Basic",
-                      style: TextStyle(fontSize: 15.0),
-                    ),
-                  ]),
-                  TableRow(
-                    children: [
-                      Text(
-                        "Vegetable oil",
-                        style: TextStyle(fontSize: 15.0),
-                      ),
-                      Text(
-                        "Rs.260",
-                        style: TextStyle(fontSize: 15.0),
-                      ),
-                      Text(
-                        "Basic",
-                        style: TextStyle(fontSize: 15.0),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+              PastTransactions(),
               Text(
                 'We Recommend You',
                 style: TextStyle(
@@ -222,6 +160,79 @@ class Home extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class PastTransactions extends StatelessWidget {
+  const PastTransactions({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Table(
+      border: TableBorder.all(color: Colors.black, width: 2.5),
+      children: const [
+        TableRow(children: [
+          Text(
+            "purchased",
+            style: TextStyle(fontSize: 15.0),
+          ),
+          Text(
+            "price(Rs)",
+            style: TextStyle(fontSize: 15.0),
+          ),
+          Text(
+            "Category",
+            style: TextStyle(fontSize: 15.0),
+          ),
+        ]),
+        TableRow(children: [
+          Text(
+            "Chocolate",
+            style: TextStyle(fontSize: 15.0),
+          ),
+          Text(
+            "Rs.80",
+            style: TextStyle(fontSize: 15.0),
+          ),
+          Text(
+            "Luxury",
+            style: TextStyle(fontSize: 15.0),
+          ),
+        ]),
+        TableRow(children: [
+          Text(
+            "Tea",
+            style: TextStyle(fontSize: 15.0),
+          ),
+          Text(
+            "Rs.180",
+            style: TextStyle(fontSize: 15.0),
+          ),
+          Text(
+            "Basic",
+            style: TextStyle(fontSize: 15.0),
+          ),
+        ]),
+        TableRow(
+          children: [
+            Text(
+              "Vegetable oil",
+              style: TextStyle(fontSize: 15.0),
+            ),
+            Text(
+              "Rs.260",
+              style: TextStyle(fontSize: 15.0),
+            ),
+            Text(
+              "Basic",
+              style: TextStyle(fontSize: 15.0),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
