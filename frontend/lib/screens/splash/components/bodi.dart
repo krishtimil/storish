@@ -18,13 +18,13 @@ class _BodiState extends State<Bodi> {
           Expanded(
             flex: 3,
             child: PageView.builder(
-              itemBuilder: (context, index) => SplashContent(
+              itemBuilder: (context, index) => const SplashContent(
                 text: "Welcome to Storish, Let's shop!",
                 image: "assets/images/splash.jpg",
               ),
             ),
           ),
-          Expanded(
+          const Expanded(
             flex: 2,
             child: SizedBox(),
           ),
@@ -47,7 +47,7 @@ class SplashContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Spacer(),
+        const Spacer(),
         Text(
           "STORISH",
           style: TextStyle(
@@ -57,7 +57,7 @@ class SplashContent extends StatelessWidget {
           ),
         ),
         Text(text),
-        Spacer(
+        const Spacer(
           flex: 2,
         ),
         Image.asset(

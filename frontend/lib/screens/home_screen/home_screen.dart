@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:storish/utils/constant.dart';
-import 'package:storish/utils/size_config.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -8,11 +7,11 @@ class Home extends StatelessWidget {
 
   Widget singalProducts(String text, String image, String money) {
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       height: 300,
       width: 200,
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 202, 199, 183),
+        color: const Color.fromARGB(255, 202, 199, 183),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -27,34 +26,34 @@ class Home extends StatelessWidget {
             children: [
               Text(
                 text,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 18),
               ),
               Text(
                 money,
-                style: TextStyle(color: Color.fromARGB(255, 51, 16, 16)),
+                style: const TextStyle(color: Color.fromARGB(255, 51, 16, 16)),
               ),
               ElevatedButton(
                 onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: kSecondaryColor,
+                ),
                 child: Row(
-                  children: [
-                    Text(
+                  children: const [
+                     Text(
                       'Buy Now',
                       textAlign: TextAlign.end,
                       style: TextStyle(
                         color: Colors.black,
                       ),
                     ),
-                    Icon(
+                     Icon(
                       Icons.shopping_cart,
                       color: Colors.black,
                     ),
                   ],
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: kSecondaryColor,
                 ),
               ),
             ],
@@ -67,25 +66,25 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFEAE0DA),
+      backgroundColor: const Color(0xFFEAE0DA),
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
-        title: Text(
+        iconTheme: const IconThemeData(color: Colors.black),
+        title: const Text(
           'Home',
           style: TextStyle(color: Colors.black, fontSize: 17),
         ),
-        actions: [
+        actions: const [
           CircleAvatar(
             radius: 12,
             backgroundColor: Color.fromARGB(255, 163, 208, 218),
             child: Icon(Icons.search, size: 17, color: Colors.black),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
+            padding: EdgeInsets.symmetric(horizontal: 5),
             child: CircleAvatar(
-              child: Icon(Icons.shop, size: 17, color: Colors.black),
               radius: 12,
               backgroundColor: Color.fromARGB(255, 163, 208, 218),
+              child: Icon(Icons.shop, size: 17, color: Colors.black),
             ),
           )
         ],
@@ -102,7 +101,7 @@ class Home extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                       fit: BoxFit.cover,
                       image: NetworkImage(
                           'https://hips.hearstapps.com/hmg-prod/images/healthy-groceries-1525213305.jpg?crop=1.00xw:0.728xh;0,0.173xh&resize=640:*')),
@@ -112,7 +111,7 @@ class Home extends StatelessWidget {
                 padding: const EdgeInsets.all(5),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: const [
                     Text(
                       'Grocery Items',
                       style: TextStyle(
@@ -141,21 +140,21 @@ class Home extends StatelessWidget {
                   ],
                 ),
               ),
-              Text(
+              const Text(
                 'Past Transactions',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              PastTransactions(),
-              Text(
+              const PastTransactions(),
+              const Text(
                 'We Recommend You',
                 style: TextStyle(
                     color: kPrimaryColor,
                     fontSize: 28,
                     fontWeight: FontWeight.bold),
               ),
-              Text('apple'),
-              Text('sweets'),
-              Text('wine'),
+              const Text('apple'),
+              const Text('sweets'),
+              const Text('wine'),
             ],
           ),
         ),

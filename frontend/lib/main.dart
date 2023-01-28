@@ -16,12 +16,12 @@ class MyApp extends StatelessWidget {
         .get(Uri.parse('http://10.0.2.2:8000/api'), headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     });
-    print(response.body);
   }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    getData();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

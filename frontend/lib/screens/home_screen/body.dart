@@ -24,7 +24,7 @@ class Body extends StatelessWidget {
                       color: kSecondaryColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(20)
                     ),
-                    child: TextField(
+                    child: const TextField(
                       decoration: InputDecoration(
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,

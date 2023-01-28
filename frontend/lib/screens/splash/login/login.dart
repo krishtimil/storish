@@ -6,22 +6,22 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFF7F5EB),
+        backgroundColor: const Color(0xFFF7F5EB),
         body: SafeArea(
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  margin: EdgeInsets.all(20),
-                  child: Text(
+                  margin: const EdgeInsets.all(20),
+                  child: const Text(
                     'Welcome Back',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(10),
-                  child: Text(
+                  margin: const EdgeInsets.all(10),
+                  child: const Text(
                     'You have been missed!',
                     style: TextStyle(fontSize: 20),
                   ),
@@ -29,13 +29,13 @@ class LoginPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Container(
-                    margin: EdgeInsets.all(20),
+                    margin: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Padding(
+                    child: const Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: TextField(
                         obscureText: true,
@@ -48,13 +48,13 @@ class LoginPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Container(
-                    margin: EdgeInsets.all(20),
+                    margin: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Padding(
+                    child: const Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: TextField(
                         obscureText: true,
@@ -67,13 +67,13 @@ class LoginPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Container(
-                      margin: EdgeInsets.all(20),
-                      padding: EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 205, 125, 125),
+                        color: const Color.fromARGB(255, 205, 125, 125),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: ElevatedButton(
                           onPressed: (null),
                           child: Text(
