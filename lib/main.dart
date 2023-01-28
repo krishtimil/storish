@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_uxcam/flutter_uxcam.dart';
 import 'package:storish/screens/splash/login/login.dart';
 import 'package:storish/screens/splash/login/signup.dart';
 import 'package:storish/screens/splash/splash_screen.dart';
@@ -16,6 +17,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    FlutterUxcam.optIntoSchematicRecordings();
+    FlutterUxcam.startWithKey("dbt7wqyvjxv74iu");
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

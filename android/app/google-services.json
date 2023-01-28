@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "932867187299",
+    "project_id": "storish-codecamp",
+    "storage_bucket": "storish-codecamp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932867187299:android:a7d17f36f8c9014f040e56",
+        "android_client_info": {
+          "package_name": "com.example.storish"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932867187299-dsp67tvub8k6t3pp1gitf5k17sok5o76.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ_9r6cwxJwVL1y-WQAVeSHF6P8ZLOVAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932867187299-dsp67tvub8k6t3pp1gitf5k17sok5o76.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
