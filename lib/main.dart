@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:storish/screens/splash/login/login.dart';
+import 'package:storish/screens/splash/login/signup.dart';
 import 'package:storish/screens/splash/splash_screen.dart';
 
 import 'package:storish/utils/constant.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: SplashScreen(),
-      home: LoginPage(),
+      home: SignUp(),
     );
   }
 }
