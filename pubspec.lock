@@ -131,14 +131,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_uxcam:
-    dependency: "direct main"
-    description:
-      name: flutter_uxcam
-      sha256: "34239312fa80168242ddd6122427fad79be4c9d93055102c41ef15ca6fa0e439"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.2"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
