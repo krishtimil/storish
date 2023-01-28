@@ -6,13 +6,13 @@ class Home extends StatelessWidget {
   const Home({super.key});
   static String routeName = "/home";
 
-  Widget singalProducts(String text, String image) {
+  Widget singalProducts(String text, String image, String money) {
     return Container(
       margin: EdgeInsets.all(10),
       height: 300,
       width: 200,
       decoration: BoxDecoration(
-        color: Color.fromARGB(31, 207, 15, 15),
+        color: Color.fromARGB(255, 202, 199, 183),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -33,21 +33,31 @@ class Home extends StatelessWidget {
                     fontSize: 18),
               ),
               Text(
-                'Rs.120',
-                style: TextStyle(color: Colors.grey),
+                money,
+                style: TextStyle(color: Color.fromARGB(255, 51, 16, 16)),
               ),
               ElevatedButton(
                 onPressed: () {},
                 child: Row(
                   children: [
-                    Text('Buy Now'),
-                    Icon(Icons.shopping_cart),
+                    Text(
+                      'Buy Now',
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                    Icon(
+                      Icons.shopping_cart,
+                      color: Colors.black,
+                    ),
                   ],
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: kPrimaryColor,
+                  primary: kSecondaryColor,
                 ),
-              )
+              ),
+              Text('WE RECOMMEND YOU'),
             ],
           ),
         )
@@ -58,7 +68,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kSecondaryColor,
+      backgroundColor: Color(0xFFEAE0DA),
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(
@@ -122,9 +132,11 @@ class Home extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  singalProducts('chocolate', 'assets/images/chocolate.jpg'),
-                  singalProducts('vegetable oil', 'assets/images/oil.png'),
-                  singalProducts('tea', 'assets/images/tea.jpg'),
+                  singalProducts(
+                      'chocolate', 'assets/images/chocolate.png', 'Rs.80'),
+                  singalProducts(
+                      'vegetable oil', 'assets/images/oil.png', 'Rs.260'),
+                  singalProducts('tea', 'assets/images/tea.png', 'Rs.180'),
                 ],
               ),
             ),
@@ -137,7 +149,7 @@ class Home extends StatelessWidget {
               children: const [
                 TableRow(children: [
                   Text(
-                    "purchased goods",
+                    "purchased",
                     style: TextStyle(fontSize: 15.0),
                   ),
                   Text(
@@ -151,11 +163,25 @@ class Home extends StatelessWidget {
                 ]),
                 TableRow(children: [
                   Text(
+                    "Chocolate",
+                    style: TextStyle(fontSize: 15.0),
+                  ),
+                  Text(
+                    "Rs.80",
+                    style: TextStyle(fontSize: 15.0),
+                  ),
+                  Text(
+                    "Luxury",
+                    style: TextStyle(fontSize: 15.0),
+                  ),
+                ]),
+                TableRow(children: [
+                  Text(
                     "Tea",
                     style: TextStyle(fontSize: 15.0),
                   ),
                   Text(
-                    "Rs.150",
+                    "Rs.180",
                     style: TextStyle(fontSize: 15.0),
                   ),
                   Text(
@@ -170,7 +196,7 @@ class Home extends StatelessWidget {
                       style: TextStyle(fontSize: 15.0),
                     ),
                     Text(
-                      "Rs.270",
+                      "Rs.260",
                       style: TextStyle(fontSize: 15.0),
                     ),
                     Text(

@@ -20,7 +20,6 @@ class MyApp extends StatelessWidget {
         // This is the theme of your application.
         scaffoldBackgroundColor: kBackgroundColor,
         fontFamily: GoogleFonts.poppins().fontFamily,
-        primarySwatch: Colors.blue,
       ),
       // home: SplashScreen(),
       home: const Home(),
