@@ -4,6 +4,9 @@ from rest_framework import status
 from rest_framework import permissions
 from .models import Transaction
 from .serializers import TransactionSerializer
+import pandas as pd
+import os
+import pickle
 
 class TransactionListApiView(APIView):
     # add permission to check if user is authenticated
@@ -41,4 +44,29 @@ class TransactionListApiView(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    
+
+class RecommendView(APIView):
+
+
+    def post(self, request, *args, **kwargs):
+        '''
+        Recommend the product
+        '''
+        def product_rec(dataframe, product, stop_num = 3):
+            counter = 0
+            rec_list = []
+            for index, row in enumerate(dataframe["antecedents"]):        
+                for item in list(row):
+                    if item == product:
+                        rec_list.append(list(dataframe["consequents"][index])[0])
+                        counter += 1
+                        if counter == stop_num:
+                            break
+            return rec_list
+        product = request.data['product']
+        # print(product)
+        path= os.path.join(os.path.dirname(__file__), 'model.pkl')
+        rules = pickle.load(open(path, 'rb'))
+        rec = product_rec(rules, product)
+        # print(product_rec(rules, "yogurt"))
+        return Response(rec, status=status.HTTP_200_OK)
