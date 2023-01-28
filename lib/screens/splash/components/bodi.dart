@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:storish/utils/constant.dart';
 import 'package:storish/utils/size_config.dart';
 
-class Body extends StatefulWidget {
-  const Body({super.key});
+class Bodi extends StatefulWidget {
+  const Bodi({super.key});
 
   @override
-  State<Body> createState() => _BodyState();
+  State<Bodi> createState() => _BodiState();
 }
 
-class _BodyState extends State<Body> {
+class _BodiState extends State<Bodi> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
