@@ -57,10 +57,9 @@ class Home extends StatelessWidget {
                   primary: kSecondaryColor,
                 ),
               ),
-              Text('WE RECOMMEND YOU'),
             ],
           ),
-        )
+        ),
       ]),
     );
   }
@@ -94,120 +93,133 @@ class Home extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-        child: Column(
-          children: [
-            Container(
-              height: 250,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                        'https://hips.hearstapps.com/hmg-prod/images/healthy-groceries-1525213305.jpg?crop=1.00xw:0.728xh;0,0.173xh&resize=640:*')),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              Container(
+                height: 250,
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(
+                          'https://hips.hearstapps.com/hmg-prod/images/healthy-groceries-1525213305.jpg?crop=1.00xw:0.728xh;0,0.173xh&resize=640:*')),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Grocery Items',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                  ),
-                  Text(
-                    'View all',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 73, 68, 68),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  singalProducts(
-                      'chocolate', 'assets/images/chocolate.png', 'Rs.80'),
-                  singalProducts(
-                      'vegetable oil', 'assets/images/oil.png', 'Rs.260'),
-                  singalProducts('tea', 'assets/images/tea.png', 'Rs.180'),
-                ],
-              ),
-            ),
-            Text(
-              'Past Transactions',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Table(
-              border: TableBorder.all(color: Colors.black, width: 2.5),
-              children: const [
-                TableRow(children: [
-                  Text(
-                    "purchased",
-                    style: TextStyle(fontSize: 15.0),
-                  ),
-                  Text(
-                    "price(Rs)",
-                    style: TextStyle(fontSize: 15.0),
-                  ),
-                  Text(
-                    "Category",
-                    style: TextStyle(fontSize: 15.0),
-                  ),
-                ]),
-                TableRow(children: [
-                  Text(
-                    "Chocolate",
-                    style: TextStyle(fontSize: 15.0),
-                  ),
-                  Text(
-                    "Rs.80",
-                    style: TextStyle(fontSize: 15.0),
-                  ),
-                  Text(
-                    "Luxury",
-                    style: TextStyle(fontSize: 15.0),
-                  ),
-                ]),
-                TableRow(children: [
-                  Text(
-                    "Tea",
-                    style: TextStyle(fontSize: 15.0),
-                  ),
-                  Text(
-                    "Rs.180",
-                    style: TextStyle(fontSize: 15.0),
-                  ),
-                  Text(
-                    "Basic",
-                    style: TextStyle(fontSize: 15.0),
-                  ),
-                ]),
-                TableRow(
+              Padding(
+                padding: const EdgeInsets.all(5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Vegetable oil",
+                      'Grocery Items',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    Text(
+                      'View all',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 73, 68, 68),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    singalProducts(
+                        'chocolate', 'assets/images/chocolate.png', 'Rs.80'),
+                    singalProducts(
+                        'vegetable oil', 'assets/images/oil.png', 'Rs.260'),
+                    singalProducts('tea', 'assets/images/tea.png', 'Rs.180'),
+                  ],
+                ),
+              ),
+              Text(
+                'Past Transactions',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Table(
+                border: TableBorder.all(color: Colors.black, width: 2.5),
+                children: const [
+                  TableRow(children: [
+                    Text(
+                      "purchased",
                       style: TextStyle(fontSize: 15.0),
                     ),
                     Text(
-                      "Rs.260",
+                      "price(Rs)",
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                    Text(
+                      "Category",
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Text(
+                      "Chocolate",
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                    Text(
+                      "Rs.80",
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                    Text(
+                      "Luxury",
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Text(
+                      "Tea",
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                    Text(
+                      "Rs.180",
                       style: TextStyle(fontSize: 15.0),
                     ),
                     Text(
                       "Basic",
                       style: TextStyle(fontSize: 15.0),
                     ),
-                  ],
-                ),
-              ],
-            ),
-          ],
+                  ]),
+                  TableRow(
+                    children: [
+                      Text(
+                        "Vegetable oil",
+                        style: TextStyle(fontSize: 15.0),
+                      ),
+                      Text(
+                        "Rs.260",
+                        style: TextStyle(fontSize: 15.0),
+                      ),
+                      Text(
+                        "Basic",
+                        style: TextStyle(fontSize: 15.0),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Text(
+                'We Recommend You',
+                style: TextStyle(
+                    color: kPrimaryColor,
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text('apple'),
+              Text('sweets'),
+              Text('wine'),
+            ],
+          ),
         ),
       ),
     );
