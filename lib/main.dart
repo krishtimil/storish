@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:storish/screens/splash/login/login.dart';
-import 'package:storish/screens/splash/login/signup.dart';
-import 'package:storish/screens/splash/splash_screen.dart';
 import './screens/home_screen/home_screen.dart';
-
 import 'package:storish/utils/constant.dart';
 
 void main() {
@@ -27,7 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: SplashScreen(),
-      home: const HomeScreen(),
+      home: const Home(),
     );
   }
 }
