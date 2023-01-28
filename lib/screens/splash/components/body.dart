@@ -26,9 +26,7 @@ class _BodyState extends State<Body> {
           ),
           Expanded(
             flex: 2,
-            child: Container(
-              color: kBackgroundColor,
-            ),
+            child: SizedBox(),
           ),
         ],
       ),

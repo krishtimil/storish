@@ -26,7 +26,8 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.poppins().fontFamily,
         primarySwatch: Colors.blue,
       ),
-      home: SplashScreen(),
+      // home: SplashScreen(),
+      home: LoginPage(),
     );
   }
 }
