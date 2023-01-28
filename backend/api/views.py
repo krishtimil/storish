@@ -37,11 +37,10 @@ class TransactionListApiView(APIView):
         }
         if data['category'] in category:
             data['basic'] = True
-        serializer = TodoSerializer(data=data)
+        serializer = TransactionSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

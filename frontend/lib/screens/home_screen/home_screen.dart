@@ -17,7 +17,8 @@ class Home extends StatelessWidget {
       'Content-Type': 'application/json; charset=UTF-8',
     });
     final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
-    transactions = parsed.map<Transaction>((json) => Transaction.fromJson(json)).toList();
+    transactions =
+        parsed.map<Transaction>((json) => Transaction.fromJson(json)).toList();
   }
 
   void onPressed() async {
@@ -27,14 +28,15 @@ class Home extends StatelessWidget {
       price: 0,
       category: "none",
       quantity: 0,
-      timestamp: DateTime(2021, 1, 1),
+      timestamp: DateTime.parse("2023-01-28T13:22:14Z"),
       basic: true,
     );
     final response = await http.post(
-      Uri.parse("http://10.0.2.2:8000/api"),
+      Uri.parse("http://10.0.2.2:8000/api/"),
       headers: {"Content-Type": "application/json"},
       body: json.encode(task),
     );
+    print(jsonEncode(task));
     if (response.statusCode == 201) {
       task.id = json.decode(response.body)['id'];
       transactions.add(task);

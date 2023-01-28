@@ -1,7 +1,7 @@
 class Transaction {
   int id;
   final int user;
-  final double price;
+  final int price;
   final int quantity;
   final String product;
   final String category;
