@@ -6,7 +6,7 @@ class Home extends StatelessWidget {
   const Home({super.key});
   static String routeName = "/home";
 
-  Widget singalProducts() {
+  Widget singalProducts(String text, String image) {
     return Container(
       margin: EdgeInsets.all(10),
       height: 300,
@@ -19,14 +19,14 @@ class Home extends StatelessWidget {
         Expanded(
           flex: 2,
           child: Image.asset(
-            'assets/images/ca.png',
+            image,
           ),
         ),
         Expanded(
           child: Column(
             children: [
               Text(
-                'Vegetable oil',
+                text,
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -122,12 +122,65 @@ class Home extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  singalProducts(),
-                  singalProducts(),
-                  singalProducts(),
+                  singalProducts('chocolate', 'assets/images/chocolate.jpg'),
+                  singalProducts('vegetable oil', 'assets/images/oil.png'),
+                  singalProducts('tea', 'assets/images/tea.jpg'),
                 ],
               ),
-            )
+            ),
+            Text(
+              'Past Transactions',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Table(
+              border: TableBorder.all(color: Colors.black, width: 2.5),
+              children: const [
+                TableRow(children: [
+                  Text(
+                    "purchased goods",
+                    style: TextStyle(fontSize: 15.0),
+                  ),
+                  Text(
+                    "price(Rs)",
+                    style: TextStyle(fontSize: 15.0),
+                  ),
+                  Text(
+                    "Category",
+                    style: TextStyle(fontSize: 15.0),
+                  ),
+                ]),
+                TableRow(children: [
+                  Text(
+                    "Tea",
+                    style: TextStyle(fontSize: 15.0),
+                  ),
+                  Text(
+                    "Rs.150",
+                    style: TextStyle(fontSize: 15.0),
+                  ),
+                  Text(
+                    "Basic",
+                    style: TextStyle(fontSize: 15.0),
+                  ),
+                ]),
+                TableRow(
+                  children: [
+                    Text(
+                      "Vegetable oil",
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                    Text(
+                      "Rs.270",
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                    Text(
+                      "Basic",
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ],
         ),
       ),
