@@ -31,4 +31,15 @@ class Transaction {
       basic: json['basic'],
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'user': user,
+        'price': price,
+        'quantity': quantity,
+        'product': product,
+        'category': category,
+        'timestamp': timestamp.toIso8601String(),
+        'basic': basic,
+      };
 }

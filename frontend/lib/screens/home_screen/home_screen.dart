@@ -1,9 +1,45 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:storish/ds/transaction.dart';
 import 'package:storish/utils/constant.dart';
+
+List<Transaction> transactions = [];
 
 class Home extends StatelessWidget {
   const Home({super.key});
   static String routeName = "/home";
+
+  Future<void> getData() async {
+    final response = await http
+        .get(Uri.parse('http://10.0.2.2:8000/api'), headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    });
+    final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
+    transactions = parsed.map<Transaction>((json) => Transaction.fromJson(json)).toList();
+  }
+
+  void onPressed() async {
+    Transaction task = Transaction(
+      user: 1,
+      product: "test",
+      price: 0,
+      category: "none",
+      quantity: 0,
+      timestamp: DateTime(2021, 1, 1),
+      basic: true,
+    );
+    final response = await http.post(
+      Uri.parse("http://10.0.2.2:8000/api"),
+      headers: {"Content-Type": "application/json"},
+      body: json.encode(task),
+    );
+    if (response.statusCode == 201) {
+      task.id = json.decode(response.body)['id'];
+      transactions.add(task);
+    }
+  }
 
   Widget singalProducts(String text, String image, String money) {
     return Container(
@@ -36,20 +72,22 @@ class Home extends StatelessWidget {
                 style: const TextStyle(color: Color.fromARGB(255, 51, 16, 16)),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  onPressed();
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kSecondaryColor,
                 ),
                 child: Row(
                   children: const [
-                     Text(
+                    Text(
                       'Buy Now',
                       textAlign: TextAlign.end,
                       style: TextStyle(
                         color: Colors.black,
                       ),
                     ),
-                     Icon(
+                    Icon(
                       Icons.shopping_cart,
                       color: Colors.black,
                     ),
