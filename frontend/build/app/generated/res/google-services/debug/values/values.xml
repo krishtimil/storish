@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">932867187299-dsp67tvub8k6t3pp1gitf5k17sok5o76.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">932867187299</string>
+    <string name="google_api_key" translatable="false">AIzaSyDQ_9r6cwxJwVL1y-WQAVeSHF6P8ZLOVAE</string>
+    <string name="google_app_id" translatable="false">1:932867187299:android:a7d17f36f8c9014f040e56</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDQ_9r6cwxJwVL1y-WQAVeSHF6P8ZLOVAE</string>
+    <string name="google_storage_bucket" translatable="false">storish-codecamp.appspot.com</string>
+    <string name="project_id" translatable="false">storish-codecamp</string>
+</resources>
