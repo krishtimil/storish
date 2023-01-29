@@ -5,7 +5,7 @@ class Transaction {
   final int quantity;
   final String product;
   final String category;
-  final DateTime timestamp;
+  int timestamp;
   bool basic;
 
   Transaction({
@@ -15,7 +15,7 @@ class Transaction {
     required this.quantity,
     required this.product,
     required this.category,
-    required this.timestamp,
+    this.timestamp = 0,
     this.basic = false,
   });
 
@@ -27,7 +27,7 @@ class Transaction {
       quantity: json['quantity'],
       product: json['product'],
       category: json['category'],
-      timestamp: DateTime.fromMillisecondsSinceEpoch(json['timestamp']),
+      timestamp: json['timestamp'],
       basic: json['basic'],
     );
   }
@@ -39,7 +39,7 @@ class Transaction {
         'quantity': quantity,
         'product': product,
         'category': category,
-        'timestamp': timestamp.toIso8601String(),
+        'timestamp': timestamp,
         'basic': basic,
       };
 }

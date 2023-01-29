@@ -24,6 +24,7 @@ class _RecState extends State<Rec> {
       },
       body: product,
     );
+    print(response.body);
     setState(() {
       rec = jsonDecode(response.body);
     });
