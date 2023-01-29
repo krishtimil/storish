@@ -7,17 +7,24 @@ import 'package:storish/screens/home_screen/rec.dart';
 import 'package:storish/utils/constant.dart';
 
 List<Transaction> transactions = [];
+String json = '';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   Home({super.key});
   static String routeName = "/home";
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   Future<void> getData() async {
     final response = await http
         .get(Uri.parse('http://10.0.2.2:8000/api'), headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     });
-    final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
+    json = response.body;
+    final parsed = jsonDecode(response.body).cast<Map<String, dynamic>>();
     transactions =
         parsed.map<Transaction>((json) => Transaction.fromJson(json)).toList();
     print(transactions);
@@ -37,19 +44,90 @@ class Home extends StatelessWidget {
       quantity: quantity,
       basic: true,
     );
-    final response = await http.post(
-      Uri.parse("http://10.0.2.2:8000/api/"),
-      headers: {"Content-Type": "application/json"},
-      body: jsonEncode(task),
-    );
-    // print(transactions);
-    if (response.statusCode == 201) {
-      task.id = json.decode(response.body)['id'];
-      transactions.add(task);
+
+    if (notify('1', json, price.toString())) {
+      final response = await http.post(
+        Uri.parse("http://10.0.2.2:8000/api/"),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode(task),
+      );
+      // print(transactions);
+      if (response.statusCode == 201) {
+        task.id = jsonDecode(response.body)['id'];
+        transactions.add(task);
+      }
     }
+    setState(() {});
   }
 
-  Widget singalProducts(String text, String image, String money) {
+  bool notify(String user_id, String recieved_json, String cur_price) {
+    //String recieved_json=[];
+
+    List<dynamic> list = jsonDecode(recieved_json);
+    var refdate = DateTime.parse("0000-00-00");
+    double totalbudjet = 0,
+        s = 0,
+        purchasedprice = 0,
+        totalremprice,
+        totalbasicbudjet =
+            0; //s for expense,totalremprice is minimumrequirement
+
+    int k = list.length - 1, t = 0;
+    while (k != 0) {
+      if (list[k]['id'].compareTo(user_id) != 0) {
+        k--;
+        continue;
+      }
+      if (t < 1) {
+        var refdate = DateTime.parse(list[k]['timestamp']);
+        t++;
+      }
+
+      if (DateTime.parse(list[k]['timestamp']).compareTo(
+              DateTime(refdate.year, refdate.month - 1, refdate.day)) <
+          0) {
+        break;
+      }
+      if (list[k]['basic'].compareTo("true") == 0) {
+        totalbasicbudjet += double.parse(list[k]['price']);
+      }
+      totalbudjet += double.parse(list[k]['price']);
+      k--;
+    }
+    totalremprice = totalbasicbudjet * 0.2333233;
+    if (DateTime.parse(list[0]['timestamp']).compareTo(
+            DateTime(refdate.year, refdate.month, refdate.day - 30)) <
+        0) {
+      while (k != 0) {
+        if (list[k]['id'].compareTo(user_id) != 0) {
+          k--;
+          continue;
+        }
+        if (t < 1) {
+          var refdate = DateTime.parse(list[k]['timestamp']);
+          t++;
+        }
+
+        if (DateTime.parse(list[k]['timestamp']).compareTo(
+                DateTime(refdate.year, refdate.month, refdate.day - 7)) <
+            0) {
+          break;
+        }
+        if (list[k]['basic'].compareTo("true") == 0) {
+          totalremprice -= double.parse(list[k]['price']);
+        }
+        s += double.parse(list[k]['price']);
+        k--;
+      }
+      if (totalremprice > totalbudjet * 0.233333 - s - int.parse(cur_price)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  Widget singalProducts(
+      String text, String image, String money, String category) {
     return Container(
       margin: const EdgeInsets.all(10),
       height: 300,
@@ -81,7 +159,11 @@ class Home extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // onPressed();
+                  onPressed(
+                    product: text,
+                    price: int.parse(money),
+                    category: category,
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kSecondaryColor,
@@ -179,11 +261,14 @@ class Home extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
+                    singalProducts('yoghurt', 'assets/images/yogurt.jpeg',
+                        'Rs.80', 'dairy'),
+                    singalProducts('chocolate', 'assets/images/chocolate.png',
+                        'Rs.80', 'added_sugars'),
+                    singalProducts('vegetable oil', 'assets/images/oil.png',
+                        'Rs.260', 'oil'),
                     singalProducts(
-                        'chocolate', 'assets/images/chocolate.png', 'Rs.80'),
-                    singalProducts(
-                        'vegetable oil', 'assets/images/oil.png', 'Rs.260'),
-                    singalProducts('tea', 'assets/images/tea.png', 'Rs.180'),
+                        'tea', 'assets/images/tea.png', 'Rs.180', 'drinks'),
                   ],
                 ),
               ),
@@ -193,7 +278,7 @@ class Home extends StatelessWidget {
               ),
               const PastTransactions(),
               Rec(
-                product: 'yogurt',
+                product: "whole milk",
               ),
             ],
           ),
@@ -203,23 +288,31 @@ class Home extends StatelessWidget {
   }
 }
 
-class PastTransactions extends StatelessWidget {
+class PastTransactions extends StatefulWidget {
   const PastTransactions({
     super.key,
   });
 
   @override
+  State<PastTransactions> createState() => _PastTransactionsState();
+}
+
+class _PastTransactionsState extends State<PastTransactions> {
+  @override
   Widget build(BuildContext context) {
+    if (transactions.length == 0) {
+      return const Text('No transactions yet');
+    }
     List<TableRow> all = transactions.map((e) {
       return TableRow(
         children: [
           Text(e.product),
           Text(e.price.toString()),
           Text(e.category),
-          Text(e.quantity.toString()),
         ],
       );
     }).toList();
+    print(all[0]);
     return Table(
       border: TableBorder.all(color: Colors.black, width: 2.5),
       children: all,

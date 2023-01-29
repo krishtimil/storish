@@ -17,7 +17,7 @@ from mlxtend.frequent_patterns import apriori, association_rules
 frequent_itemsets = apriori(grocery_pivot, min_support=0.01, use_colnames=True)
 rules = association_rules(frequent_itemsets, metric="support", min_threshold=0.01)
 rules = rules.sort_values("lift", ascending=False).reset_index(drop=True) 
-
+rules.to_csv("rules.csv")
 pickle.dump(rules, open('model.pkl', 'wb'))
 
 def product_rec(dataframe, product, stop_num = 3):

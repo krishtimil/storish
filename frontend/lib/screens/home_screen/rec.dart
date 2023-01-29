@@ -6,7 +6,6 @@ import '../../utils/constant.dart';
 
 class Rec extends StatefulWidget {
   var product;
-
   Rec({super.key, required this.product});
 
   @override
@@ -14,24 +13,33 @@ class Rec extends StatefulWidget {
 }
 
 class _RecState extends State<Rec> {
-  String rec = 'Loading...';
+  // String rec = 'Loading...';
+  late Future<String> rec;
 
-  Future<void> getRec(String product) async {
+  Future<String> getRec(String product) async {
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:8000/api'),
+      Uri.parse('http://10.0.2.2:8000/recommend/'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: product,
+      body: jsonEncode({"product": product}),
     );
     print(response.body);
-    setState(() {
-      rec = jsonDecode(response.body);
-    });
+    // setState(() {
+    //   rec = jsonDecode(response.body);
+    // });
+    return jsonDecode(response.body).join(",");
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    rec = getRec(widget.product);
   }
 
   @override
   Widget build(BuildContext context) {
+    getRec(widget.product);
     return Column(
       children: [
         Text(
@@ -39,7 +47,19 @@ class _RecState extends State<Rec> {
           style: TextStyle(
               color: kPrimaryColor, fontSize: 28, fontWeight: FontWeight.bold),
         ),
-        Text(rec),
+        FutureBuilder(
+          future: rec,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Text(snapshot.data!);
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+
+            // By default, show a loading spinner.
+            return const CircularProgressIndicator();
+          },
+        ),
       ],
     );
   }
