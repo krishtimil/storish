@@ -22,13 +22,18 @@ class Home extends StatelessWidget {
         parsed.map<Transaction>((json) => Transaction.fromJson(json)).toList();
   }
 
-  void onPressed() async {
+  void onPressed({
+    required String product,
+    required int price,
+    required String category,
+    int quantity = 0,
+  }) async {
     Transaction task = Transaction(
       user: 1,
-      product: "test",
-      price: 0,
-      category: "none",
-      quantity: 0,
+      product: product,
+      price: price,
+      category: category,
+      quantity: quantity,
       basic: true,
     );
     final response = await http.post(
@@ -36,7 +41,7 @@ class Home extends StatelessWidget {
       headers: {"Content-Type": "application/json"},
       body: jsonEncode(task),
     );
-    print(jsonEncode(task));
+    print(transactions);
     if (response.statusCode == 201) {
       task.id = json.decode(response.body)['id'];
       transactions.add(task);
@@ -75,7 +80,7 @@ class Home extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  onPressed();
+                  // onPressed();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kSecondaryColor,
@@ -203,68 +208,10 @@ class PastTransactions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Table(
       border: TableBorder.all(color: Colors.black, width: 2.5),
-      children: const [
-        TableRow(children: [
-          Text(
-            "purchased",
-            style: TextStyle(fontSize: 15.0),
-          ),
-          Text(
-            "price(Rs)",
-            style: TextStyle(fontSize: 15.0),
-          ),
-          Text(
-            "Category",
-            style: TextStyle(fontSize: 15.0),
-          ),
-        ]),
-        TableRow(children: [
-          Text(
-            "Chocolate",
-            style: TextStyle(fontSize: 15.0),
-          ),
-          Text(
-            "Rs.80",
-            style: TextStyle(fontSize: 15.0),
-          ),
-          Text(
-            "Luxury",
-            style: TextStyle(fontSize: 15.0),
-          ),
-        ]),
-        TableRow(children: [
-          Text(
-            "Tea",
-            style: TextStyle(fontSize: 15.0),
-          ),
-          Text(
-            "Rs.180",
-            style: TextStyle(fontSize: 15.0),
-          ),
-          Text(
-            "Basic",
-            style: TextStyle(fontSize: 15.0),
-          ),
-        ]),
-        TableRow(
-          children: [
-            Text(
-              "Vegetable oil",
-              style: TextStyle(fontSize: 15.0),
-            ),
-            Text(
-              "Rs.260",
-              style: TextStyle(fontSize: 15.0),
-            ),
-            Text(
-              "Basic",
-              style: TextStyle(fontSize: 15.0),
-            ),
-          ],
-        ),
-      ],
+      children: [],
     );
   }
 }
