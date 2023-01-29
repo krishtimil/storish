@@ -18,6 +18,40 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Oops'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('You are spending too much!'),
+                Text('Are you sure you want to continue?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Approve'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Future<void> getData() async {
     final response = await http
         .get(Uri.parse('http://10.0.2.2:8000/api'), headers: <String, String>{
@@ -27,7 +61,7 @@ class _HomeState extends State<Home> {
     final parsed = jsonDecode(response.body).cast<Map<String, dynamic>>();
     transactions =
         parsed.map<Transaction>((json) => Transaction.fromJson(json)).toList();
-    print(transactions);
+    // print(transactions);
   }
 
   void onPressed({
@@ -45,7 +79,10 @@ class _HomeState extends State<Home> {
       basic: true,
     );
 
-    if (notify('1', json, price.toString())) {
+    if (product == "chocolate") {
+      _showMyDialog();
+      return;
+    } else {
       final response = await http.post(
         Uri.parse("http://10.0.2.2:8000/api/"),
         headers: {"Content-Type": "application/json"},
@@ -261,14 +298,14 @@ class _HomeState extends State<Home> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    singalProducts('yoghurt', 'assets/images/yogurt.jpeg',
-                        'Rs.80', 'dairy'),
-                    singalProducts('chocolate', 'assets/images/chocolate.png',
-                        'Rs.80', 'added_sugars'),
-                    singalProducts('vegetable oil', 'assets/images/oil.png',
-                        'Rs.260', 'oil'),
                     singalProducts(
-                        'tea', 'assets/images/tea.png', 'Rs.180', 'drinks'),
+                        'yoghurt', 'assets/images/yogurt.jpeg', '80', 'dairy'),
+                    singalProducts('chocolate', 'assets/images/chocolate.png',
+                        '80', 'added_sugars'),
+                    singalProducts(
+                        'vegetable oil', 'assets/images/oil.png', '260', 'oil'),
+                    singalProducts(
+                        'tea', 'assets/images/tea.png', '180', 'drinks'),
                   ],
                 ),
               ),
