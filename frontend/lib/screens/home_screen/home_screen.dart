@@ -315,7 +315,7 @@ class _HomeState extends State<Home> {
               ),
               const PastTransactions(),
               Rec(
-                product: "whole milk",
+                product: "yogurt",
               ),
             ],
           ),
