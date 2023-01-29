@@ -81,6 +81,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': '%s000',
+}
 
 
 # Password validation

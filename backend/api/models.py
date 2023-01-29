@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Transaction(models.Model):
     user = models.IntegerField()
-    timestamp = models.DateTimeField()
+    timestamp = models.DateTimeField(auto_now_add=True)
     product = models.CharField(max_length=100)
     quantity = models.IntegerField()
     price = models.IntegerField()
