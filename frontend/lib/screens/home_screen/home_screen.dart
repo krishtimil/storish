@@ -20,6 +20,7 @@ class Home extends StatelessWidget {
     final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
     transactions =
         parsed.map<Transaction>((json) => Transaction.fromJson(json)).toList();
+    print(transactions);
   }
 
   void onPressed({
@@ -41,7 +42,7 @@ class Home extends StatelessWidget {
       headers: {"Content-Type": "application/json"},
       body: jsonEncode(task),
     );
-    print(transactions);
+    // print(transactions);
     if (response.statusCode == 201) {
       task.id = json.decode(response.body)['id'];
       transactions.add(task);
@@ -110,6 +111,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getData();
     return Scaffold(
       backgroundColor: const Color(0xFFEAE0DA),
       appBar: AppBar(
@@ -208,10 +210,19 @@ class PastTransactions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    List<TableRow> all = transactions.map((e) {
+      return TableRow(
+        children: [
+          Text(e.product),
+          Text(e.price.toString()),
+          Text(e.category),
+          Text(e.quantity.toString()),
+        ],
+      );
+    }).toList();
     return Table(
       border: TableBorder.all(color: Colors.black, width: 2.5),
-      children: [],
+      children: all,
     );
   }
 }
